@@ -11,6 +11,7 @@ class AdminsController < ApplicationController
   def create
     @admin = Admin.new(admin_params)
     if @admin.save
+      log_in @admin
       flash[:success] = "Welcome to the Class Portal!"
       redirect_to @admin
     else

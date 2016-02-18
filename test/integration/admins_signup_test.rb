@@ -4,13 +4,13 @@ class AdminsSignupTest < ActionDispatch::IntegrationTest
   
   test "invalid signup information" do
     get signup_path
-    assert_no_difference 'User.count' do
-      post users_path, user: { name:  "",
+    assert_no_difference 'Admin.count' do
+      post admins_path, admin: { name:  "",
                                email: "user@invalid",
                                password:              "foo",
                                password_confirmation: "bar" }
     end
-    assert_template 'users/new'
+    assert_template 'admins/new'
   end
   
   test "valid signup information" do
@@ -18,13 +18,14 @@ class AdminsSignupTest < ActionDispatch::IntegrationTest
     name     = "Example User"
     email    = "user@example.com"
     password = "password"
-    assert_difference 'User.count', 1 do
-      post_via_redirect users_path, user: { name:  name,
+    assert_difference 'Admin.count', 1 do
+      post_via_redirect admins_path, admin: { name:  name,
                                             email: email,
                                             password:              password,
                                             password_confirmation: password }
     end
-    assert_template 'users/show'
+    assert_template 'admins/show'
+    assert is_logged_in?
   end
 
 end
