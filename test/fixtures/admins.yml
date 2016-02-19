@@ -2,3 +2,26 @@ michael:
   name: Michael Example
   email: michael@example.com
   password_digest: <%= Admin.digest('password') %>
+  preconfigured: true
+  
+archer:
+  name: Sterling Archer
+  email: duchess@example.gov
+  password_digest: <%= Admin.digest('password') %>
+  
+lana:
+  name: Lana Kane
+  email: hands@example.gov
+  password_digest: <%= Admin.digest('password') %>
+
+mallory:
+  name: Mallory Archer
+  email: boss@example.gov
+  password_digest: <%= Admin.digest('password') %>
+
+<% 30.times do |n| %>
+admin_<%= n %>:
+  name:  <%= "Admin #{n}" %>
+  email: <%= "admin-#{n}@example.com" %>
+  password_digest: <%= Admin.digest('password') %>
+<% end %>
