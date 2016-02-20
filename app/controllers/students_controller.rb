@@ -16,7 +16,7 @@ class StudentsController < ApplicationController
   def create
     @student = Student.new(student_params)
     if @student.save
-      log_in @student
+      student_log_in @student
       flash[:success] = "Welcome to the Class Portal!"
       redirect_to @student
     else

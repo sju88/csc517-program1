@@ -15,8 +15,7 @@ class InstructorsController < ApplicationController
   def create
     @instructor = Instructor.new(instructor_params)
     if @instructor.save
-      log_in @instructor
-      flash[:success] = "Welcome to the Class Portal!"
+      flash[:success] = "Success!"
       redirect_to @instructor
     else
       render 'new'
