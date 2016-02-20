@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get 'signup'  => 'admins#new'
   get 'signup_student'  => 'students#new'
   get 'signup_instructor'  => 'instructors#new'
+  get 'signup_course'  => 'courses#new'
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
@@ -31,5 +32,6 @@ Rails.application.routes.draw do
   resources :admins
   resources :students
   resources :instructors
+  resources :courses
   
 end

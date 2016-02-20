@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  course_number: MyString
+  title: MyString
+  description: MyText
+  instructor: MyString
+  start_date: 2016-02-20 14:48:05
+  end_date: 2016-02-20 14:48:05
+  status: MyString
+
+two:
+  course_number: MyString
+  title: MyString
+  description: MyText
+  instructor: MyString
+  start_date: 2016-02-20 14:48:05
+  end_date: 2016-02-20 14:48:05
+  status: MyString
