@@ -1,0 +1,5 @@
+<li>
+      <%= gravatar_for student%>
+      <%= link_to student.name, student %>
+      | <%= link_to "delete", student, method: :delete, data: { confirm: "You sure?" } %>
+</li>

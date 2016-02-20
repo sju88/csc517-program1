@@ -1,12 +1,15 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
-    <%= link_to "sample app", root_path, id: "logo" %>
+    <%= link_to "Class Portal", root_path, id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Home", root_path %></li>
-        <li><%= link_to "Help", help_path %></li>
+
         <% if logged_in? %>
           <li><%= link_to "Admins", admins_path %></li>
+          <li><%= link_to "Students", students_path %></li>
+          <li><%= link_to "Instructors", instructors_path %></li>
+          <li><%= link_to "Courses", '#' %></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               Account <b class="caret"></b>
@@ -14,15 +17,51 @@
             <ul class="dropdown-menu">
               <li><%= link_to "Profile", current_admin %></li>
               <li><%= link_to "Settings", edit_admin_path(current_admin) %></li>
+              <li><%= link_to "Create Admin", signup_path %></li>
+              <li><%= link_to "Create Instructor", signup_instructor_path %></li>
               <li class="divider"></li>
               <li>
                 <%= link_to "Log out", logout_path, method: "delete" %>
               </li>
             </ul>
           </li>
-        <% else %>
-          <li><%= link_to "Log in", login_path %></li>
         <% end %>
+        
+        <% if student_logged_in? %>
+          <li><%= link_to "Courses", '#' %></li>
+          <li><%= link_to "Enrollment", '#' %></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              Account <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "Profile", current_student %></li>
+              <li><%= link_to "Settings", edit_student_path(current_student) %></li>
+              <li class="divider"></li>
+              <li>
+                <%= link_to "Log out", student_logout_path, method: "delete" %>
+              </li>
+            </ul>
+          </li>
+        <% end %>
+        
+        <% if instructor_logged_in? %>
+          <li><%= link_to "Assignments", '#' %></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              Account <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "Profile", current_instructor %></li>
+              <li><%= link_to "Settings", edit_instructor_path(current_instructor) %></li>
+              <li class="divider"></li>
+              <li>
+                <%= link_to "Log out", instructor_logout_path, method: "delete" %>
+              </li>
+            </ul>
+          </li>
+        <% end %>
+        
       </ul>
     </nav>
   </div>
