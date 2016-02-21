@@ -1,12 +1,12 @@
-Admin.create!(name:  "Example Admin",
-             email: "example@railstutorial.org",
-             password:              "foobar",
-             password_confirmation: "foobar",
+Admin.create!(name:  "Super Admin",
+             email: "super@ncsu.edu",
+             password:              "123456",
+             password_confirmation: "123456",
              preconfigured: true)
 
-99.times do |n|
+20.times do |n|
   name  = Faker::Name.name
-  email = "example-#{n+1}@railstutorial.org"
+  email = "example-#{n+1}@ncsu.edu"
   password = "password"
   Admin.create!(name:  name,
                email: email,
