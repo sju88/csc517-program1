@@ -44,11 +44,31 @@ class StudentsController < ApplicationController
     redirect_to students_url
   end
   
+  def history
+    @student = current_student
+    @enrollments = Enrollment.where(status: true, student_email: @student.email)
+  end
+  
+  def search
+    @courses = Course.all
+  end
+  
+  def results
+    @courses = Enrollment.where(course_number: @course.course_number)
+  end
+  
+  def enroll
+    Enrollment.new(student_enrollment_params)
+  end
+
   private
 
     def student_params
       params.require(:student).permit(:name, :email, :password,
                                    :password_confirmation)
+    end
+    def student_enrollment_params
+     params.require(:enrollment).permit(:course_number, :student_email, :status => false)
     end
     
     

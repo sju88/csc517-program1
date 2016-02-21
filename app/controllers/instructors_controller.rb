@@ -42,6 +42,11 @@ class InstructorsController < ApplicationController
     redirect_to instructors_url
   end
   
+  def req
+    @student = current_student
+    @enrollments = Enrollment.where(status: false)
+  end
+  
   private
 
     def instructor_params

@@ -9,6 +9,8 @@ class Student < ActiveRecord::Base
                     uniqueness: { case_sensitive: false }
     has_secure_password
     validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+    has_many :enrollments
+    has_many :courses, through: :enrollments
     
     # 返回指定字符串的哈希摘要
   def Student.digest(string)

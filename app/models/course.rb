@@ -8,5 +8,8 @@ class Course < ActiveRecord::Base
     validates :instructor,  presence: true
     validates :start_date,  presence: true
     validates :end_date,  presence: true
+    
+    has_many :enrollments
+    has_many :students, through: :enrollments
 
 end

@@ -1,0 +1,13 @@
+<% provide(:title, 'All enrollments') %>
+<h1>All enrollments</h1>
+
+<ul class="courses">
+  <% @courses.each do |enrollments| %>
+    <li>
+      <%= enrollments.course_number %>
+      | <%= link_to "enroll", '#' %>
+      | <%= link_to "drop", '#' %>
+      
+    </li>
+  <% end %>
+</ul>

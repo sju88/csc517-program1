@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  course_number: MyString
+  student_email: MyString
+  status: false
+
+two:
+  course_number: MyString
+  student_email: MyString
+  status: false

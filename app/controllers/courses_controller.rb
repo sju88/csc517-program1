@@ -8,6 +8,10 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
   end
   
+  def showcourse(cnum)
+    @course = Course.find(cnum)
+  end
+  
   def create
     @course = Course.new(course_params)
     if @course.save
@@ -30,6 +34,10 @@ class CoursesController < ApplicationController
     else
       render 'edit'
     end
+  end
+  
+  def search
+    @courses = Course.paginate(page: params[:page])
   end
   
   def index

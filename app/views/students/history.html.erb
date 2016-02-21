@@ -1,0 +1,13 @@
+<% provide(:title, 'All enrollments') %>
+<h1>All enrollments</h1>
+
+<ul class="courses">
+  <% @enrollments.each do |enrollments| %>
+    <li>
+      <%= enrollments.course_number %>
+      <% @course = Course.find_by(course_number: enrollments.course_number) %>
+      | <%= link_to "view", @course %>
+      
+    </li>
+  <% end %>
+</ul>

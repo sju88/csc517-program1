@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'ctemps/new'
+
+  get 'coursetemp/new'
+
   get 'instructor_sessions/new'
 
   get 'instructors/new'
@@ -29,9 +33,17 @@ Rails.application.routes.draw do
   post   'instructor_login'   => 'instructor_sessions#create'
   delete 'instructor_logout'  => 'instructor_sessions#destroy'
   
+  get 'history'  => 'students#history'
+  get 'req'  => 'instructors#req'
+  get 'student_enrollment'  => 'students#enrollment'
+  get 'course_view'  => 'students#course_view'
+  get 'search'  => 'students#search'
+  post 'search'   => 'students#results'
+  
   resources :admins
   resources :students
   resources :instructors
   resources :courses
+  resources :ctemps
   
 end
