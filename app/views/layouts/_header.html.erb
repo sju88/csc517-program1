@@ -3,7 +3,6 @@
     <%= link_to "Class Portal", root_path, id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Home", root_path %></li>
 
         <% if logged_in? %>
           <li><%= link_to "Admins", admins_path %></li>
@@ -48,6 +47,7 @@
         
         <% if instructor_logged_in? %>
           <li><%= link_to "Requestment", req_path %></li>
+          <li><%= link_to "Courses", instructor_courseinfo_path %></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               Account <b class="caret"></b>

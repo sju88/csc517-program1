@@ -1,0 +1,21 @@
+<% provide(:title, @course.course_number) %>
+
+
+<h1>Students----<%= @course.course_number %></h1>
+    
+    <ul class="courses">
+      <% @enrollments.each do |enrollments| %>
+        <li>
+          <% @student = Student.find_by(email: enrollments.student_email) %>
+          Student: <%= @student.name %>-----
+          <%if enrollments.grade == nil %>
+             no grade 
+          <% else %>
+            grade: <%= enrollments.grade %>
+          <% end %>
+          | <%= link_to "grade", grade_path(enrollment_id: enrollments.id) %>
+          | <%= link_to "remove", remove_student_path(enrollment_id: enrollments.id) ,method: :delete, data: { confirm: "You sure?" }%>
+        </li>
+      <% end %>
+    </ul>
+    

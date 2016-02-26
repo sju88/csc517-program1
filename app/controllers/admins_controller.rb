@@ -46,6 +46,15 @@ class AdminsController < ApplicationController
     redirect_to admins_url
   end
   
+  def addmaterial
+    content = params[:material]
+    course_num = params[:course_number]
+    @course = Course.find_by(course_number: course_num)
+    CourseMaterial.create(course_number: course_num, material: content)
+    flash[:success] = "Add material succeed!"
+    redirect_to @course
+  end
+  
   private
 
     def admin_params

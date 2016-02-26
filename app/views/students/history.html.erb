@@ -1,12 +1,29 @@
 <% provide(:title, 'All enrollments') %>
-<h1>All enrollments</h1>
+<h1>Enrollments</h1>
 
 <ul class="courses">
   <% @enrollments.each do |enrollments| %>
     <li>
+      <%= enrollments.course_number %>-----
+      <%if enrollments.grade == nil %>
+         no grade 
+      <% else %>
+        grade: <%= enrollments.grade %>
+      <% end %>
+      | <%= link_to "drop", drop_course_path(enrollment_id: enrollments.id), method: :delete, data: { confirm: "You sure?" } %>
+    </li>
+  <% end %>
+</ul>
+
+<hr style="height:1px;border:none;border-top:1px solid #555555;" />
+
+<h1>Pendings</h1>
+
+<ul class="courses">
+  <% @enrollments_pending.each do |enrollments| %>
+    <li>
       <%= enrollments.course_number %>
-      <% @course = Course.find_by(course_number: enrollments.course_number) %>
-      | <%= link_to "view", @course %>
+      | <%= link_to "drop", drop_course_path(enrollment_id: enrollments.id), method: :delete, data: { confirm: "You sure?" } %>
       
     </li>
   <% end %>

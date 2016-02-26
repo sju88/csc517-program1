@@ -1,0 +1,46 @@
+<% provide(:title, @course.course_number) %>
+<div class="row">
+
+    <section class="course_info">
+        
+      <h1><%= @course.course_number %></h1>
+      
+      <h2>Title: <%= @course.title %></h2>
+      
+      <h2>Description: <%= @course.description %></h2>
+      
+      <h2>Instructor: 
+            <% @courseinstructors = CourseInstructor.all%>
+                  <% @courseinstructors.each do |instructor| %>
+                    <% if instructor.course_number == @course.course_number %>
+                            <% @instruct = Instructor.find_by(email: instructor.instructor_email) %>
+                            <%= @instruct.name %>;
+                    <% end %>
+                  <% end %>
+      </h2>
+      
+      <h2>Start_date: <%= @course.start_date %></h2>
+      
+      <h2>End_date: <%= @course.end_date %></h2>
+      
+      <h2>Status: <%= @course.status %></h2>
+      
+      <h1>Materials of <%= @course.course_number %></h1>
+      
+      <% @materials = CourseMaterial.where(course_number: @course.course_number ) %>
+        <% @materials.each do |m| %>
+            
+                <li>
+                    <%= m.material%>
+                </li>
+            
+            <hr style=" height:2px;border:none;border-top:2px dotted #185598;" />
+        <% end %>
+      
+      <h2><%= link_to "Enroll", enroll_path(course_number: @course.course_number), class: "btn btn-primary btn-block" %></h2>
+      
+    </section>
+    
+    
+</div>
+

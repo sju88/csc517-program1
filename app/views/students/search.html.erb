@@ -2,12 +2,9 @@
 <h1>All enrollments</h1>
 
 <ul class="courses">
-  <% @courses.each do |enrollments| %>
+  <% @courses.each do |course| %>
     <li>
-      <%= enrollments.course_number %>
-      | <%= link_to "enroll", '#' %>
-      | <%= link_to "drop", '#' %>
-      
+      <%= link_to course.course_number , student_courseinfo_path(course_id: course.id) %>
     </li>
   <% end %>
 </ul>

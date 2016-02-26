@@ -2,15 +2,15 @@
 <h1>All enrollments</h1>
 
 <ul class="courses">
-  <% @enrollments.each do |enrollments| %>
+  <% @enrollments.each do |enrollment| %>
+    <% if CourseInstructor.find_by(course_number: enrollment.course_number, instructor_email: @instructor.email) %>
     <li>
-      <%= enrollments.course_number %>---------
-      <%= enrollments.student_email %>
-      <% @course = Course.find_by(course_number: enrollments.course_number) %>
-      | <%= link_to "view", @course %>
-      | <%= link_to "approve", @course %>
-      | <%= link_to "disapprove", @course %>
-      
+      <%= enrollment.course_number %>---------
+      <%= enrollment.student_email %>
+      <% @course = Course.find_by(course_number: enrollment.course_number) %>
+      | <%= link_to "approve", approve_path(request_id: enrollment.id) %>
+      | <%= link_to "disapprove", disapprove_path(request_id: enrollment.id), method: :delete, data: { confirm: "You sure?" } %>
     </li>
+    <% end %>
   <% end %>
 </ul>

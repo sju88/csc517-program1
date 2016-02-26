@@ -47,6 +47,7 @@ class StudentsController < ApplicationController
   def history
     @student = current_student
     @enrollments = Enrollment.where(status: true, student_email: @student.email)
+    @enrollments_pending = Enrollment.where(status: false, student_email: @student.email)
   end
   
   def search
@@ -58,7 +59,25 @@ class StudentsController < ApplicationController
   end
   
   def enroll
-    Enrollment.new(student_enrollment_params)
+    @student = current_student
+    course_number = params[:course_number]
+    if Enrollment.find_by(course_number: course_number, student_email: @student.email)
+      flash[:success] = "Has already enrolled"
+    else
+      Enrollment.create(course_number: course_number, student_email: @student.email, status: 0)
+      flash[:success] = "Enroll succeed"
+    end
+    redirect_to search_url
+  end
+  
+  def drop_course
+    Enrollment.find(params[:enrollment_id]).destroy
+    flash[:success] = "Drop succeed!"
+    redirect_to history_url
+  end
+  
+  def courseinfo
+    @course = Course.find(params[:course_id])
   end
 
   private

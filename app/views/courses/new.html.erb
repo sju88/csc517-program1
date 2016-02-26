@@ -16,7 +16,7 @@
       <%= f.text_field :description, class: 'form-control' %>
 
       <%= f.label :Instructor %>
-      <%= f.text_field :instructor, class: 'form-control' %>
+      <%= select_tag :instructor, options_from_collection_for_select(Instructor.all, 'id', 'name')%>
       
       <%= f.label :Start_date %>
       <%= f.date_field :start_date, class: 'form-control' %>

@@ -9,14 +9,103 @@
       
       <h2>Description: <%= @course.description %></h2>
       
-      <h2>course: <%= @course.instructor %></h2>
-      
       <h2>Start_date: <%= @course.start_date %></h2>
       
       <h2>End_date: <%= @course.end_date %></h2>
       
       <h2>Status: <%= @course.status %></h2>
       
-    </section>
+      <h2><%= link_to "edit", edit_course_path(@course), class: "btn btn-primary" %>  <%= link_to "delete", @course, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-primary" %></h2>
 
+    
+    </section>
+    
+</div>
+
+<hr style="height:1px;border:none;border-top:1px solid #555555;" />
+
+<div>
+  <h1> Enrolled stuents </h1>
+  
+  <% @enrollments = Enrollment.all%>
+  <% @enrollments.each do |enrollment| %>
+    <% if enrollment.course_number == @course.course_number %>
+      <% @student = Student.find_by(email: enrollment.student_email) %>
+      <% if @student != nil %>
+          <li>
+              <%=@student.name%>-----
+              <%= enrollment.student_email %>
+              | <%= link_to "drop", drop_student_path(request_id: enrollment.id) %>
+          </li>
+      <% end %>
+    <% end %>
+  <% end %>
+  
+  <div class="row">
+  <div class="col-md-3 col-md-offset-0">
+  <%= form_tag({ controller: 'courses', action: 'add_student' }, method: 'get') do %>
+     <label>Add student to this course</label>
+    <%= select_tag 'student', options_from_collection_for_select(Student.all, 'id', 'name') %>
+    <%= hidden_field_tag :course_id, @course.id %> 
+    <%= submit_tag "Add student to course", class: "btn btn-primary" %>
+  <% end %>
+  </div>
+  </div>
+
+</div>
+
+<hr style="height:1px;border:none;border-top:1px solid #555555;" />
+
+<div>
+  <h1> Course Instructor </h1>
+  
+  <% @courseinstructors = CourseInstructor.all%>
+  <% @courseinstructors.each do |instructor| %>
+  <% if instructor.course_number == @course.course_number %>
+    <li>
+      <% @instruct = Instructor.find_by(email: instructor.instructor_email) %>
+      <%= @instruct.name %>-----
+      <%= instructor.instructor_email %>
+      | <%= link_to "drop", drop_instructor_path(request_id: instructor.id)%>
+    </li>
+     <%end%>
+  <% end %>
+  
+  <div class="row">
+  <div class="col-md-3 col-md-offset-0">
+  <%= form_tag({ controller: 'courses', action: 'add_instructor' }, method: 'get') do %>
+     <label>Add instructor to this course</label>
+    <%= select_tag 'instructor', options_from_collection_for_select(Instructor.all, 'id', 'name') %>
+    <%= hidden_field_tag :course_id, @course.id %>
+    <%= submit_tag "Add instructor to course", class: "btn btn-primary" %>
+  <% end %>
+  </div>
+  </div>
+  
+</div>
+
+<hr style="height:1px;border:none;border-top:1px solid #555555;" />
+
+<h1> Materials </h1>
+
+
+<% @materials = CourseMaterial.where(course_number: @course.course_number ) %>
+<% @materials.each do |m| %>
+    <div class="row">
+        <li>
+            <%= m.material%>
+        </li>
+    </div>
+    <hr style=" height:2px;border:none;border-top:2px dotted #185598;" />
+<% end %>
+
+<div class="row">
+
+  <%= form_tag({ controller: 'admins', action: 'addmaterial' }, method: 'get') do %>
+    <%= label_tag(:q, "Material") %>
+    <%= text_area_tag( :material) %>
+    <%= hidden_field_tag :course_number, @course.course_number %>
+    <%= submit_tag "Add material", class: "btn btn-primary" %>
+  <% end %>
+  
 </div>

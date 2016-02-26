@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'course_instructors/new'
+
   get 'ctemps/new'
 
   get 'coursetemp/new'
@@ -34,11 +36,31 @@ Rails.application.routes.draw do
   delete 'instructor_logout'  => 'instructor_sessions#destroy'
   
   get 'history'  => 'students#history'
-  get 'req'  => 'instructors#req'
   get 'student_enrollment'  => 'students#enrollment'
   get 'course_view'  => 'students#course_view'
   get 'search'  => 'students#search'
-  post 'search'   => 'students#results'
+  get 'student_courseinfo' => 'students#courseinfo'
+  get 'enroll'  => 'students#enroll'
+  delete 'drop_course'  => 'students#drop_course'
+  
+  get 'req'  => 'instructors#req'
+  get 'instructor_courseinfo' => 'instructors#courseinfo'
+  get 'studentsincourse_info' => 'instructors#studentsincourseinfo'
+  get 'approve'   => 'instructors#approve'
+  get 'grade'   => 'instructors#grade'
+  get 'grade_student'   => 'instructors#gradestudent'
+  delete 'remove_student'   => 'instructors#removestudent'
+  delete 'disapprove'   => 'instructors#disapprove'
+  
+
+  get 'add_student'  => 'courses#add_student'
+  get 'drop_student'  => 'courses#drop_student'
+  get 'add_instructor'  => 'courses#add_instructor'
+  get 'drop_instructor'  => 'courses#drop_instructor'
+  get 'coursematerial_info' => 'courses#coursematerialinfo'
+  get 'addmaterial'   => 'courses#addmaterial'
+  
+  get 'adminsaddmaterial'   => 'admins#addmaterial'
   
   resources :admins
   resources :students

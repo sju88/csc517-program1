@@ -1,0 +1,23 @@
+<% provide(:title, @course.course_number) %>
+
+<h1><%= @course.course_number %>----Materials</h1>
+
+<% @materials.each do |m| %>
+    <div class="row">
+        <li>
+            <%= m.material%>
+        </li>
+    </div>
+    <hr style=" height:2px;border:none;border-top:2px dotted #185598;" />
+<% end %>
+
+<div class="row">
+
+  <%= form_tag({ controller: 'courses', action: 'addmaterial' }, method: 'get') do %>
+    <%= label_tag(:q, "Material") %>
+    <%= text_area_tag( :material) %>
+    <%= hidden_field_tag :course_number, @course.course_number %>
+    <%= submit_tag "Add material", class: "btn btn-primary" %>
+  <% end %>
+  
+</div>
