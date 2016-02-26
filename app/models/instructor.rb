@@ -1,4 +1,6 @@
 class Instructor < ActiveRecord::Base
+  
+    has_many :course_instructors
     
     attr_accessor :remember_token
     before_save { self.email = email.downcase }

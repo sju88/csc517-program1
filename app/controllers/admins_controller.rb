@@ -55,6 +55,19 @@ class AdminsController < ApplicationController
     redirect_to @course
   end
   
+  def admingrade
+    @enrollment = Enrollment.find(params[:enrollment_id])
+    @student = Student.find_by(email: @enrollment.student_email)
+  end
+  
+  def gradestudent
+    @enrollment = Enrollment.find(params[:enroll_id])
+    s_grade = params[:grade]
+    @enrollment.update_attributes(grade: s_grade)
+    @course = Course.find_by(course_number: @enrollment.course_number)
+    redirect_to @course
+  end
+  
   private
 
     def admin_params

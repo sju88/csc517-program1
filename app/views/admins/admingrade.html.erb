@@ -1,0 +1,14 @@
+<% provide(:title, "Grade") %>
+
+<h1><%= @enrollment.course_number %>:  grade for <%= @student.name %></h1>
+
+<div class="row">
+
+  <%= form_tag({ controller: 'admins', action: 'gradestudent' }, method: 'get') do %>
+    <%= label_tag(:q, "Grade") %>
+    <%= text_field_tag :grade %>
+    <%= hidden_field_tag :enroll_id, @enrollment.id %>
+    <%= submit_tag "Grade", class: "btn btn-primary" %>
+  <% end %>
+  
+</div>

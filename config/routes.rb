@@ -61,6 +61,8 @@ Rails.application.routes.draw do
   get 'addmaterial'   => 'courses#addmaterial'
   
   get 'adminsaddmaterial'   => 'admins#addmaterial'
+  get 'admin_grade'   => 'admins#admingrade'
+  get 'admin_grade_student'   => 'admins#gradestudent'
   
   resources :admins
   resources :students

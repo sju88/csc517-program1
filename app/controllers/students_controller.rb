@@ -51,7 +51,16 @@ class StudentsController < ApplicationController
   end
   
   def search
-    @courses = Course.all
+    if params[:search]
+        @courses = Course.search(params[:search], params[:searchby])
+      if !@courses.is_a? Array
+          @courses.order("course_number ASC")
+        else
+          @courses.sort!{|a,b| a.course_number <=> b.course_number}
+      end
+    else
+        @courses = Course.all.order('course_number ASC')
+    end
   end
   
   def results

@@ -34,7 +34,13 @@
       <% if @student != nil %>
           <li>
               <%=@student.name%>-----
-              <%= enrollment.student_email %>
+              <%= enrollment.student_email %>----
+              <%if enrollment.grade == nil %>
+                 no grade 
+              <% else %>
+                 grade: <%= enrollment.grade %>
+              <% end %>
+              | <%= link_to "grade", admin_grade_path(enrollment_id: enrollment.id) %>
               | <%= link_to "drop", drop_student_path(request_id: enrollment.id) %>
           </li>
       <% end %>
