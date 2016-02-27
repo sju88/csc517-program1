@@ -44,13 +44,16 @@
               <% else %>
                  grade: <%= enrollment.grade %>
               <% end %>
+              <%if @course.status == "Active" %>
               | <%= link_to "grade", admin_grade_path(enrollment_id: enrollment.id) %>
               | <%= link_to "drop", drop_student_path(request_id: enrollment.id) %>
+              <% end %>
           </li>
       <% end %>
     <% end %>
   <% end %>
   
+  <%if @course.status == "Active" %>
   <div class="row">
   <div class="col-md-3 col-md-offset-0">
   <%= form_tag({ controller: 'courses', action: 'add_student' }, method: 'get') do %>
@@ -61,6 +64,7 @@
   <% end %>
   </div>
   </div>
+  <% end %>
 
 </div>
 
@@ -76,11 +80,14 @@
       <% @instruct = Instructor.find_by(email: instructor.instructor_email) %>
       <%= @instruct.name %>-----
       <%= instructor.instructor_email %>
+      <%if @course.status == "Active" %>
       | <%= link_to "drop", drop_instructor_path(request_id: instructor.id)%>
+      <% end %>
     </li>
      <%end%>
   <% end %>
   
+  <%if @course.status == "Active" %>
   <div class="row">
   <div class="col-md-3 col-md-offset-0">
   <%= form_tag({ controller: 'courses', action: 'add_instructor' }, method: 'get') do %>
@@ -91,6 +98,7 @@
   <% end %>
   </div>
   </div>
+  <% end %>
   
 </div>
 
