@@ -1,8 +1,8 @@
 Admin.create!(name:  "Super Admin", email: "superadmin@ncsu.edu", password: "123456", password_confirmation: "123456", preconfigured: true)
 
-Admin.create!(name:  "admin1", email: "admin1@ncsu.edu", password: "123456", password_confirmation: "123456" )
+Admin.create!(name:  "admin1", email: "admin1@ncsu.edu", password: "123456", password_confirmation: "123456", preconfigured: false )
 
-Admin.create!(name:  "admin2", email: "admin2@ncsu.edu", password: "123456", password_confirmation: "123456" )
+Admin.create!(name:  "admin2", email: "admin2@ncsu.edu", password: "123456", password_confirmation: "123456", preconfigured: false )
 
 
 Student.create!(name:  "student1", email: "student1@ncsu.edu", password: "123456", password_confirmation: "123456" )

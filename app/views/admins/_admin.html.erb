@@ -1,7 +1,7 @@
 <li>
       <%= gravatar_for admin%>
       <%= link_to admin.name, admin %>
-      <% if !admin.preconfigured? && !current_admin?(admin) %>
+      <% if !(admin.preconfigured == true) %>
     | <%= link_to "delete", admin, method: :delete,
                                   data: { confirm: "You sure?" } %>
   <% end %>
