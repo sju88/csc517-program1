@@ -36,8 +36,10 @@
             
             <hr style=" height:2px;border:none;border-top:2px dotted #185598;" />
         <% end %>
-      
+        
+      <%if @course.status == "Active" %>
       <h2><%= link_to "Enroll", enroll_path(course_number: @course.course_number), class: "btn btn-primary btn-block" %></h2>
+      <% end %>
       
     </section>
     

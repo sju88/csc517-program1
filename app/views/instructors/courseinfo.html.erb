@@ -3,6 +3,7 @@
 
 <% @Course_Instructor_infos.each do |t| %>
 <% @course = Course.find_by(course_number: t.course_number) %>
+<% if @course %>
     <div class="row">
     
         <section class="course_info">
@@ -24,6 +25,7 @@
         </section>
         
     </div>
+<% end %>
     
     <hr style="height:1px;border:none;border-top:1px solid #555555;" />
 <% end %>
