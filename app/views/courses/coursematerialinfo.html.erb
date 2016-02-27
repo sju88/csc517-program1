@@ -13,11 +13,12 @@
 
 <div class="row">
 
+<%if @course.status == "Active" %>
   <%= form_tag({ controller: 'courses', action: 'addmaterial' }, method: 'get') do %>
     <%= label_tag(:q, "Material") %>
     <%= text_area_tag( :material) %>
     <%= hidden_field_tag :course_number, @course.course_number %>
     <%= submit_tag "Add material", class: "btn btn-primary" %>
   <% end %>
-  
+<% end %>  
 </div>

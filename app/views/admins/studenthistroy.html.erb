@@ -1,0 +1,27 @@
+<% provide(:title, 'All enrollments') %>
+<h1>Enrollments</h1>
+
+<ul class="courses">
+  <% @enrollments.each do |enrollments| %>
+    <li>
+      <%= enrollments.course_number %>-----
+      <%if enrollments.grade == nil %>
+         no grade 
+      <% else %>
+        grade: <%= enrollments.grade %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<hr style="height:1px;border:none;border-top:1px solid #555555;" />
+
+<h1>Pendings</h1>
+
+<ul class="courses">
+  <% @enrollments_pending.each do |enrollments| %>
+    <li>
+      <%= enrollments.course_number %>
+    </li>
+  <% end %>
+</ul>

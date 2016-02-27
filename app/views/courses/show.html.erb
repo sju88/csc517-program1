@@ -15,7 +15,11 @@
       
       <h2>Status: <%= @course.status %></h2>
       
-      <h2><%= link_to "edit", edit_course_path(@course), class: "btn btn-primary" %>  <%= link_to "delete", @course, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-primary" %></h2>
+      <%if @course.status == "Active" %>
+        <h2><%= link_to "edit", edit_course_path(@course), class: "btn btn-primary" %>  <%= link_to "delete", @course, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-primary" %></h2>
+      <% else %>
+        <h2><%= link_to "delete", @course, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-primary" %></h2>
+      <% end %>
 
     
     </section>
@@ -107,11 +111,13 @@
 
 <div class="row">
 
-  <%= form_tag({ controller: 'admins', action: 'addmaterial' }, method: 'get') do %>
-    <%= label_tag(:q, "Material") %>
-    <%= text_area_tag( :material) %>
-    <%= hidden_field_tag :course_number, @course.course_number %>
-    <%= submit_tag "Add material", class: "btn btn-primary" %>
+  <%if @course.status == "Active" %>
+      <%= form_tag({ controller: 'admins', action: 'addmaterial' }, method: 'get') do %>
+        <%= label_tag(:q, "Material") %>
+        <%= text_area_tag( :material) %>
+        <%= hidden_field_tag :course_number, @course.course_number %>
+        <%= submit_tag "Add material", class: "btn btn-primary" %>
+      <% end %>
   <% end %>
   
 </div>

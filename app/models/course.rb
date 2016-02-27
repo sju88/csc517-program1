@@ -25,7 +25,7 @@ class Course < ActiveRecord::Base
             courseinstructors = CourseInstructor.where(instructor_email: instructor.email)
             courseinstructors.each do |courseinstructor|
               course = Course.find_by(course_number: courseinstructor.course_number)
-              if !results.include? course
+              if course && (!results.include? course)
                 results << course
               end
             end

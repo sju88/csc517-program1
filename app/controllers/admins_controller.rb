@@ -67,6 +67,12 @@ class AdminsController < ApplicationController
     redirect_to @course
   end
   
+  def studenthistroy
+    @student = Student.find(params[:student_id])
+    @enrollments = Enrollment.where(status: true, student_email: @student.email)
+    @enrollments_pending = Enrollment.where(status: false, student_email: @student.email)
+  end
+  
   private
 
     def admin_params
